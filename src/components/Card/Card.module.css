@@ -1,0 +1,8 @@
+/* src/components/Card/Card.module.css */
+.portaCartao { width: 500px; height: 300px; perspective: 1500px; }
+.cartao { width: 100%; height: 100%; position: relative; transition: transform 0.8s; transform-style: preserve-3d; }
+.ladoFrente { position: absolute; top: 0; left: 0; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 15px; overflow: hidden; box-sizing: border-box; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); display: grid; }
+.infoContainer { text-align: center; }
+.infoNome { font-size: 2.6em; margin: 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.4); }
+.infoProfissao { font-size: 1.5em; font-style: italic; margin: 0.5rem 0 0; opacity: 0.9; text-shadow: 1px 1px 3px rgba(0,0,0,0.4); }
+.gridCell { border: 1px dashed rgba(255, 255, 255, 0.2); display: flex; justify-content: center; align-items: center; padding: 0.5rem; box-sizing: border-box; }

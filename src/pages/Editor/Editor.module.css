@@ -1,0 +1,86 @@
+/* src/pages/Editor/Editor.module.css */
+.editorContainer {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.controlsPanel {
+  flex: 1;
+  background-color: #2f2f2f;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid #444;
+}
+
+.panelHeader {
+  border-bottom: 1px solid #444;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.panelHeader h1 {
+  font-size: 1.8rem;
+  margin: 0;
+  color: #fff;
+}
+
+.panelHeader p {
+  margin: 0.5rem 0 0;
+  color: #a0a0a0;
+}
+
+.previewPanel {
+  flex: 1;
+  position: sticky;
+  top: 2rem;
+}
+
+.previewPanel h2 {
+  text-align: center;
+  color: #e0e0e0;
+}
+
+.cardPreviewWrapper {
+  transform: scale(0.65);
+  transform-origin: top center;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.controlSection {
+  margin-top: 2rem;
+}
+
+.controlSection h3 {
+    color: #fff;
+    border-bottom: 1px solid #444;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #e0e0e0;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background-color: #3a3a3a;
+  color: #fff;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
