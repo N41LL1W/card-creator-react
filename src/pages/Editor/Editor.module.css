@@ -16,3 +16,4 @@
 .ioButtons button, .loadButton { flex: 1; padding: 0.5rem 1rem; border: 1px solid #555; background-color: #3a3a3a; color: #fff; border-radius: 6px; cursor: pointer; text-align: center; font-size: 0.9rem; }
 .generateButton { width: 100%; padding: 0.75rem; font-size: 1.1rem; background-color: #5a67d8; color: #fff; border: none; border-radius: 6px; cursor: pointer; margin-top: 2rem; }
 .placeholderText { color: #a0a0a0; font-style: italic; text-align: center; padding: 1rem; }
+.dragPreview { position: absolute; top: -1000px; left: -1000px; background-color: rgba(90, 103, 216, 0.8); color: white; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 500; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); pointer-events: none; }

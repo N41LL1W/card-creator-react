@@ -11,8 +11,22 @@ const availableWidgets = [
 ];
 
 export function WidgetPanel() {
-  const handleDragStart = (e: React.DragEvent, widgetType: string) => {
+  
+  const handleDragStart = (e: React.DragEvent, widgetType: string, widgetLabel: string) => {
+    // Guarda o TIPO do widget para que o drop saiba o que está sendo adicionado
     e.dataTransfer.setData('widgetType', widgetType);
+
+    // Lógica para criar a pré-visualização de arraste customizada
+    const dragPreview = document.getElementById('drag-preview');
+    if (dragPreview) {
+      // Cria o conteúdo da pré-visualização com ícone e texto
+      dragPreview.innerHTML = `<i class="fas ${availableWidgets.find(w => w.type === widgetType)?.icon || 'fa-puzzle-piece'}"></i> Adicionando ${widgetLabel}...`;
+      
+      // Define a imagem "fantasma" que segue o mouse
+      // O navegador tira um "snapshot" do dragPreview neste momento
+      // Os valores (15, 15) indicam um pequeno deslocamento para o cursor não ficar exatamente no canto
+      e.dataTransfer.setDragImage(dragPreview, 15, 15);
+    }
   };
 
   return (
@@ -21,8 +35,8 @@ export function WidgetPanel() {
         <div 
           key={widget.type}
           className={styles.widgetItem}
-          draggable
-          onDragStart={(e) => handleDragStart(e, widget.type)}
+          draggable // Torna o elemento arrastável
+          onDragStart={(e) => handleDragStart(e, widget.type, widget.label)}
         >
           <i className={`fas ${widget.icon}`}></i>
           <span>{widget.label}</span>

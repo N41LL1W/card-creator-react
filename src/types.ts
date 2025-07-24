@@ -6,7 +6,7 @@ export interface WidgetStyles {
   fontStyle: 'normal' | 'italic';
   textDecoration: 'none' | 'underline';
   textAlign: 'left' | 'center' | 'right';
-  fontFamily: string;
+  fontFamily: string; // Adicionada esta linha
 }
 
 export interface Widget {
