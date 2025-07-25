@@ -16,9 +16,11 @@
 
 ## Próximos Passos (Roadmap)
 
-- [ ] **CORRIGIR BUG CRÍTICO:** Resolver o erro de tipo (`Type 'string' is not assignable to 'number'`) que impede a compilação correta do componente `Card.tsx` ao interagir com os controles de sobreposição.
+- [ ] **Estabilizar a Geração do Cartão Final (`cartao.html`):**
+    - [ ] Investigar e corrigir o erro de tipo (`Type 'string' is not assignable to 'number'`) que ocorre no `script-cartao.js` durante a renderização do fundo.
+    - [ ] Garantir que a camada de sobreposição (Overlay) seja renderizada corretamente no cartão final.
+    - [ ] Validar o dimensionamento de imagens (Logo/QR Code) no layout final.
 - [ ] **Finalizar o Editor de Design:**
-    - [ ] Implementar e estabilizar o componente para a camada de Sobreposição (Overlay).
     - [ ] Adicionar mais opções de customização aos widgets (fontes, etc.).
 - [ ] **Implementar o Back-end e Banco de Dados:**
     - [ ] Configurar a conexão com o NeonDB.

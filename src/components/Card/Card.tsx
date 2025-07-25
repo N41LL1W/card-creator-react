@@ -4,12 +4,21 @@ import type { BackgroundOptions } from '../BackgroundControls/BackgroundControls
 import type { OverlayOptions } from '../OverlayControls/OverlayControls';
 import type { Widget } from '../../types';
 
-// Função auxiliar limpa, sem conversão de tipo
-function hexToRgba(hex: string, alpha: number = 1): string {
-    let r=0,g=0,b=0;
-    if(hex.length==4){r="0x"+hex[1]+hex[1];g="0x"+hex[2]+hex[2];b="0x"+hex[3]+hex[3];}
-    else if(hex.length==7){r="0x"+hex[1]+hex[2];g="0x"+hex[3]+hex[4];b="0x"+hex[5]+hex[6];}
-    return `rgba(${+r},${+g},${+b},${alpha})`;
+// Função auxiliar para converter HEX para RGBA
+function hexToRgba(hex: string, alpha: number | string = 1): string {
+    const numericAlpha = typeof alpha === 'string' ? parseFloat(alpha) : alpha;
+    let r = 0, g = 0, b = 0;
+    if (hex.length == 4) {
+        r = parseInt(hex[1] + hex[1], 16);
+        g = parseInt(hex[2] + hex[2], 16);
+        b = parseInt(hex[3] + hex[3], 16);
+    }
+    else if (hex.length == 7) {
+        r = parseInt(hex[1] + hex[2], 16);
+        g = parseInt(hex[3] + hex[4], 16);
+        b = parseInt(hex[5] + hex[6], 16);
+    }
+    return `rgba(${r},${g},${b},${numericAlpha})`;
 }
 
 interface CardProps {
@@ -24,17 +33,16 @@ interface CardProps {
 export function Card({ widgets, colSizes, rowSizes, background, overlay, onDrop }: CardProps) {
   
   const backgroundLayer = background.type === 'solid'
-    ? background.solidColor
-    : `linear-gradient(${background.gradientAngle}deg, ${background.gradientColors.join(', ')})`;
+    ? hexToRgba(background.solidColor, background.solidOpacity)
+    // Corrigido para verificar se gradientColors existe antes de mapear
+    : `linear-gradient(${background.gradientAngle}deg, ${(background.gradientColors || []).map(c => hexToRgba(c.color, c.opacity)).join(', ')})`;
 
   let overlayLayer = '';
   if (overlay.isActive) {
     overlayLayer = overlay.type === 'solid'
-      // Não precisa mais de conversão, pois os dados já são números
       ? hexToRgba(overlay.solidColor, overlay.solidOpacity)
-      : `linear-gradient(${overlay.gradientAngle}deg, ${overlay.gradientColors.map(c => 
-          hexToRgba(c.color, c.opacity)
-        ).join(', ')})`;
+      // Corrigido para verificar se gradientColors existe antes de mapear
+      : `linear-gradient(${overlay.gradientAngle}deg, ${(overlay.gradientColors || []).map(c => hexToRgba(c.color, c.opacity)).join(', ')})`;
   }
   
   const combinedBackground = overlayLayer ? `${overlayLayer}, ${backgroundLayer}` : backgroundLayer;
