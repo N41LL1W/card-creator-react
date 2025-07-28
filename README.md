@@ -16,13 +16,11 @@
 
 ## Próximos Passos (Roadmap)
 
-- [ ] **Estabilizar a Geração do Cartão Final (`cartao.html`):**
-    - [ ] Investigar e corrigir o erro de tipo (`Type 'string' is not assignable to 'number'`) que ocorre no `script-cartao.js` durante a renderização do fundo.
-    - [ ] Garantir que a camada de sobreposição (Overlay) seja renderizada corretamente no cartão final.
-    - [ ] Validar o dimensionamento de imagens (Logo/QR Code) no layout final.
+- [ ] **Estabilizar a Arquitetura de Camadas:**
+    - [ ] **CORRIGIR BUG CRÍTICO:** Investigar e resolver o erro de tipo (`Type 'string' is not assignable to 'number'`) que persiste no componente `Card.tsx`, mesmo após a refatoração para a arquitetura de camadas.
+    - [ ] Garantir que a renderização do fundo e dos widgets a partir do estado `layers` seja estável.
 - [ ] **Finalizar o Editor de Design:**
-    - [ ] Adicionar mais opções de customização aos widgets (fontes, etc.).
-- [ ] **Implementar o Back-end e Banco de Dados:**
-    - [ ] Configurar a conexão com o NeonDB.
-    - [ ] Criar a API em Node.js para salvar e carregar templates e dados de cartões.
+    - [ ] Reimplementar os painéis de controle para editar as propriedades de cada camada (fundo, grid, widgets).
+    - [ ] Reimplementar a funcionalidade de Drag & Drop na nova arquitetura.
+- [ ] **Implementar o Back-end e Banco de Dados.**
 - [ ] **Criar um sistema de contas de usuário.**
