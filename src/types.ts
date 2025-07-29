@@ -18,39 +18,30 @@ export interface Widget {
   id: number;
   type: 'nome' | 'profissao' | 'contato' | 'endereco' | 'logo' | 'qrcode';
   content: string;
-  gridCell: number;
+  gridCell: number; // Posição dentro da camada de grid
   styles: WidgetStyles;
 }
 
-// PADRONIZADO: Ambos usam GradientColorStop
-export interface BackgroundOptions {
-  type: 'solid' | 'gradient';
-  solidColor: string;
-  solidOpacity: number;
-  gradientAngle: number;
-  gradientColors: GradientColorStop[];
-}
-
-export interface OverlayOptions {
-  isActive: boolean;
-  type: 'solid' | 'gradient';
-  solidColor: string;
-  solidOpacity: number;
-  gradientAngle: number;
-  gradientColors: GradientColorStop[];
-}
-
-// Tipo unificado para LayerOptions
-export interface LayerOptions extends Partial<BackgroundOptions> {
-    colSizes?: string[];
-    rowSizes?: string[];
-    widgets?: Widget[];
+// Opções detalhadas para cada tipo de camada
+export interface LayerOptions {
+  // Para fundo/sobreposição
+  type: 'solid' | 'gradient' | 'image' | 'grid'; // 'grid' para a camada de widgets
+  solidColor?: string;
+  solidOpacity?: number;
+  gradientAngle?: number;
+  gradientColors?: GradientColorStop[];
+  imageUrl?: string;
+  imageOpacity?: number;
+  // Para a camada de grid
+  colSizes?: string[];
+  rowSizes?: string[];
+  widgets?: Widget[];
 }
 
 export interface Layer {
   id: number;
   name: string;
-  type: 'background' | 'widget-grid';
+  type: 'background' | 'widget-grid' | 'overlay';
   visible: boolean;
   options: LayerOptions;
 }

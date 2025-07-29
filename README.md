@@ -1,26 +1,28 @@
 ## Funcionalidades Atuais (Front-end em Desenvolvimento)
 
-*   **Arquitetura Baseada em Componentes:** O projeto utiliza React para criar uma interface de usuário modular e reutilizável.
-*   **Gerenciamento de Estado Reativo:** O editor usa o hook `useState` do React para gerenciar o estado do cartão.
-*   **Editor de Cartão (`Editor.tsx`):**
-    *   Interface de duas colunas com painel de controles e pré-visualização em tempo real.
-    *   **Controle de Conteúdo Dinâmico:** Painéis de controle são gerados para cada elemento adicionado, permitindo a customização de seu conteúdo e estilos (cor, tamanho, negrito, etc.).
-    *   **Controle de Layout (Grid):** Componente funcional para adicionar, remover e dimensionar colunas e linhas.
-    *   **Controle de Fundo:** Componente funcional para customizar o fundo com cores sólidas ou gradientes.
-    *   **Painel de Elementos:** Permite adicionar novos widgets ao cartão.
-*   **Pré-visualização Interativa (`Card.tsx`):**
-    *   Renderiza o cartão dinamicamente com base no estado do editor.
-    *   **Funcionalidade de Drag and Drop:** Permite arrastar elementos do painel para o cartão e mover elementos dentro do cartão.
-*   **Salvar, Carregar e Gerar:** Funcionalidades implementadas para salvar/carregar o estado completo e gerar o cartão final.
-*   **Tipagem com TypeScript:** Garante a segurança e a robustez do código.
+O editor foi totalmente refatorado para uma **arquitetura baseada em camadas (Layers)**, inspirada em softwares de design profissionais. Esta abordagem oferece máxima flexibilidade e escalabilidade.
+
+*   **Sistema de Camadas:**
+    *   O cartão é construído como uma pilha de camadas que podem ser reordenadas via Drag & Drop.
+    *   Suporte para diferentes tipos de camadas, como `Fundo`, `Sobreposição de Cor` e `Grid de Widgets`.
+    *   Cada camada pode ser ligada ou desligada individualmente.
+*   **Painel de Propriedades Dinâmico:**
+    *   Uma interface de "Dashboard" com um menu lateral permite focar na edição de uma área de cada vez (Grid, Fundo, Elementos, etc.).
+    *   Ao selecionar uma camada na lista, um painel de propriedades contextuais aparece, mostrando apenas os controles relevantes para aquela camada.
+*   **Editor de Grid e Widgets:**
+    *   A camada de "Conteúdo" contém um grid totalmente customizável, com adição/remoção e dimensionamento de colunas e linhas.
+    *   Elementos (widgets) como `Nome`, `Profissão`, `Logo`, etc., podem ser adicionados e configurados com estilos avançados (fonte, cor, tamanho, alinhamento).
+    *   Funcionalidade de Drag & Drop para posicionar widgets nas células do grid.
+*   **Pré-visualização 100% Reativa:**
+    *   O componente `Card` renderiza a pilha de camadas em tempo real.
+    *   Qualquer alteração no painel de camadas ou no painel de propriedades é refletida instantaneamente na pré-visualização.
+*   **Tipagem com TypeScript:** Garante a segurança e a consistência dos dados em toda a aplicação.
 
 ## Próximos Passos (Roadmap)
 
-- [ ] **Estabilizar a Arquitetura de Camadas:**
-    - [ ] **CORRIGIR BUG CRÍTICO:** Investigar e resolver o erro de tipo (`Type 'string' is not assignable to 'number'`) que persiste no componente `Card.tsx`, mesmo após a refatoração para a arquitetura de camadas.
-    - [ ] Garantir que a renderização do fundo e dos widgets a partir do estado `layers` seja estável.
 - [ ] **Finalizar o Editor de Design:**
-    - [ ] Reimplementar os painéis de controle para editar as propriedades de cada camada (fundo, grid, widgets).
-    - [ ] Reimplementar a funcionalidade de Drag & Drop na nova arquitetura.
+    - [ ] Completar os painéis de propriedades para todos os tipos de camada e widgets.
+    - [ ] Implementar a funcionalidade de salvar/carregar o estado completo do editor (incluindo as camadas).
+    - [ ] Criar a lógica para gerar o cartão final a partir da estrutura de camadas.
 - [ ] **Implementar o Back-end e Banco de Dados.**
 - [ ] **Criar um sistema de contas de usuário.**

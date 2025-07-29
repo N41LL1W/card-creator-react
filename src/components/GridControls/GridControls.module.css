@@ -1,29 +1,35 @@
 /* src/components/GridControls/GridControls.module.css */
-.sectionContent {
+.container {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
+
 .controlGroup {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
+
 .labelWithButtons {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .labelWithButtons label {
   font-weight: 500;
   color: #e0e0e0;
 }
+
 .buttons {
   display: flex;
   gap: 0.5rem;
 }
+
 .buttons button {
-  width: 25px; height: 25px;
+  width: 25px;
+  height: 25px;
   border: 1px solid #555;
   background-color: #3a3a3a;
   color: #fff;
@@ -36,10 +42,12 @@
   align-items: center;
   padding: 0;
 }
+
 .sizesContainer {
   display: flex;
   gap: 0.5rem;
 }
+
 .sizesContainer input {
   width: 100%;
   text-align: center;

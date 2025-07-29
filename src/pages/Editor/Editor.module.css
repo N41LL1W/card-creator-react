@@ -3,15 +3,15 @@
   display: flex;
   gap: 2rem;
   width: 100%;
-  max-width: 1600px; /* Aumenta a largura máxima para acomodar melhor */
+  max-width: 1600px;
   margin: 0 auto;
   padding: 2rem;
-  align-items: flex-start; /* Alinha os itens no topo */
+  align-items: flex-start;
 }
 
 .controlsPanel {
-  flex: 2; /* CORREÇÃO: Dá 2/3 do espaço para os controles */
-  min-width: 600px; /* Garante que o painel não fique espremido */
+  flex: 2;
+  min-width: 650px;
   background-color: #2f2f2f;
   border-radius: 8px;
   padding: 1.5rem;
@@ -23,11 +23,26 @@
   padding-bottom: 1rem;
   margin-bottom: 1rem;
 }
-.panelHeader h1 { font-size: 1.8rem; margin: 0; color: #fff; }
-.panelHeader p { margin: 0.5rem 0 0; color: #a0a0a0; }
+
+.panelHeader h1 {
+  font-size: 1.8rem;
+  margin: 0;
+  color: #fff;
+}
+
+.panelHeader p {
+  margin: 0.5rem 0 0;
+  color: #a0a0a0;
+}
+
+.panelsWrapper {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
 
 .previewPanel {
-  flex: 1; /* CORREÇÃO: Dá 1/3 do espaço para a pré-visualização */
+  flex: 1;
   position: sticky;
   top: 2rem;
 }
@@ -35,24 +50,30 @@
 .previewPanel h2 {
   text-align: center;
   color: #e0e0e0;
-  margin-bottom: 0;
 }
 
 .cardPreviewWrapper {
-  /* CORREÇÃO: Aumentamos a escala e ajustamos a origem */
-  transform: scale(0.85);
-  transform-origin: top center;
-  margin-top: -30px; /* Compensa o espaço extra criado pela escala */
   display: flex;
   justify-content: center;
+  zoom: 0.7; 
 }
 
-.controlSection { margin-top: 2rem; }
-.controlSection h3 { color: #fff; border-bottom: 1px solid #444; padding-bottom: 0.75rem; margin-bottom: 1rem; }
-.formGroup { margin-bottom: 1rem; }
-.formGroup label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #e0e0e0; }
-.formGroup input { width: 100%; padding: 0.75rem; border-radius: 6px; border: 1px solid #555; background-color: #3a3a3a; color: #fff; font-size: 1rem; box-sizing: border-box; }
-.ioButtons { margin-top: 1rem; display: flex; gap: 0.5rem; }
-.ioButtons button, .loadButton { flex: 1; padding: 0.5rem 1rem; border: 1px solid #555; background-color: #3a3a3a; color: #fff; border-radius: 6px; cursor: pointer; text-align: center; font-size: 0.9rem; }
-.generateButton { width: 100%; padding: 0.75rem; font-size: 1.1rem; background-color: #5a67d8; color: #fff; border: none; border-radius: 6px; cursor: pointer; margin-top: 2rem; }
-.placeholderText { color: #a0a0a0; font-style: italic; text-align: center; padding: 1rem; }
+.controlSection {
+  margin-top: 2rem;
+}
+
+.controlSection h3 {
+  color: #fff;
+  border-bottom: 1px solid #444;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.placeholderText {
+  color: #a0a0a0;
+  font-style: italic;
+  text-align: center;
+  padding: 1rem;
+  border: 1px dashed #555;
+  border-radius: 6px;
+}

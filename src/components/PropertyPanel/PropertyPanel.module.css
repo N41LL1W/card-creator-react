@@ -1,0 +1,156 @@
+/* src/components/PropertyPanel/PropertyPanel.module.css */
+.panel {
+    flex-grow: 1;
+    padding-left: 25px;
+}
+
+.panel h3 {
+    font-size: 1.2em;
+    color: #e0e0e0;
+    margin-bottom: 1rem;
+}
+
+.placeholder {
+    color: #a0a0a0;
+    font-style: italic;
+    text-align: center;
+    padding: 2rem;
+    border: 1px dashed #555;
+    border-radius: 6px;
+}
+
+.hr {
+    border: 0;
+    border-top: 1px solid #444;
+    margin: 1.5rem 0;
+}
+
+.widgetControlBlock {
+    border: 1px solid #555;
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #3a3a3a;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #555;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.header h4 {
+    margin: 0;
+    color: #fff;
+}
+
+.deleteButton {
+    background: none;
+    border: none;
+    color: #e57373;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.contentInput {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.contentInput label {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.contentInput input {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #555;
+    background-color: #2f2f2f;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.styleControls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.controlGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.controlGroup label {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.inlineInputs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.inlineInputs input[type="color"] {
+    width: 40px;
+    height: 30px;
+    padding: 2px;
+}
+
+.inlineInputs input[type="number"] {
+    width: 60px;
+}
+
+.inlineInputs span {
+    color: #a0a0a0;
+}
+
+.buttonGroup {
+    display: flex;
+    border: 1px solid #555;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.buttonGroup button {
+    background: #2f2f2f;
+    color: #ccc;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    border-right: 1px solid #555;
+    cursor: pointer;
+    flex-grow: 1;
+}
+
+.buttonGroup button:last-child {
+    border-right: none;
+}
+
+.buttonGroup button.active {
+    background-color: #5a67d8;
+    color: #fff;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.addButton {
+    background-color: #3a3a3a;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    width: 100%;
+    font-weight: 500;
+}

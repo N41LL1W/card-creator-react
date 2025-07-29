@@ -5,7 +5,10 @@
 .layerItem { display: flex; align-items: center; background-color: #3a3a3a; padding: 0.75rem; border-radius: 6px; border: 1px solid #555; cursor: grab; }
 .layerItem:active { cursor: grabbing; background-color: #4a4a4a; }
 .dragHandle { color: #777; margin-right: 0.75rem; }
-.layerName { flex-grow: 1; color: #e0e0e0; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; }
+.layerName { flex-grow: 1; color: #e0e0e0; font-weight: 500; display: flex; align-items: center; gap: 0.75rem; cursor: pointer; }
 .layerItem button { background: none; border: none; color: #a0a0a0; cursor: pointer; font-size: 1rem; }
-.layerItem button.visible { color: #5a67d8; }
+.layerItem button.visible { color: #818cf8; }
 .addButton { background-color: #3a3a3a; border: 1px solid #555; color: #fff; padding: 0.75rem; border-radius: 6px; margin-top: 1rem; width: 100%; font-weight: 500; }
+.addButton:hover { background-color: #4a4a4a; }
+.layerItem.active { background-color: #434190; border-color: #818cf8;}
+.layerName span { flex-grow: 1;}
