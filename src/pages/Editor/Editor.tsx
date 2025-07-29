@@ -17,14 +17,11 @@ export function Editor() {
       },
     },
     {
-      id: 2, name: 'Conteúdo Principal', type: 'widget-grid', visible: true,
+      id: 2, name: 'Conteúdo', type: 'widget-grid', visible: true,
       options: {
         type: 'grid',
         colSizes: ['1fr'], rowSizes: ['1fr'],
-        widgets: [
-          { id: 101, type: 'nome', content: 'Seu Nome Aqui', gridCell: 0, styles: { color: '#ffffff', fontSize: '28px', fontWeight: 'bold', fontStyle: 'normal', textDecoration: 'none', textAlign: 'center', fontFamily: 'Arial, sans-serif' }},
-          { id: 102, type: 'profissao', content: 'Sua Profissão', gridCell: 0, styles: { color: '#ffffff', fontSize: '18px', fontWeight: 'normal', fontStyle: 'italic', textDecoration: 'none', textAlign: 'center', fontFamily: 'Arial, sans-serif' }},
-        ],
+        widgets: [], // Começa sem widgets
       }
     }
   ]);
@@ -33,38 +30,44 @@ export function Editor() {
   const selectedLayer = layers.find(l => l.id === selectedLayerId) || null;
 
   const updateLayer = (layerId: number, newOptions: Partial<Layer['options']>) => {
-    setLayers(layers.map(l => 
+    setLayers(prevLayers => prevLayers.map(l => 
       l.id === layerId ? { ...l, options: { ...l.options, ...newOptions } } : l
     ));
   };
-
-  const addWidget = (widgetType: Widget['type']) => {
+  
+  const addWidget = (widgetType: Widget['type'], label: string) => {
       const gridLayer = layers.find(l => l.type === 'widget-grid');
       if (!gridLayer) return;
 
       const currentWidgets = gridLayer.options.widgets || [];
-      const widgetExistente = currentWidgets.find(w => w.type === widgetType);
-
-      if (widgetExistente) {
-          alert(`O elemento "${widgetType}" já existe.`);
-          setSelectedLayerId(gridLayer.id);
-          return;
-      }
-      
       const novoWidget: Widget = {
           id: Date.now(),
           type: widgetType,
+          label: label,
           content: '',
-          gridCell: -1,
-          styles: { color: '#333333', fontSize: '16px', fontWeight: 'normal', fontStyle: 'normal', textDecoration: 'none', textAlign: 'center', fontFamily: 'Arial, sans-serif' }
+          gridCell: -1, // Começa desposicionado
+          styles: { 
+            color: '#333333', 
+            fontSize: '16px', 
+            fontWeight: 'normal', 
+            fontStyle: 'normal', 
+            textDecoration: 'none', 
+            textAlign: 'center', 
+            fontFamily: 'Arial, sans-serif' 
+          }
       };
 
+      if (label.toLowerCase().includes('nome')) {
+        novoWidget.styles.fontSize = '28px';
+        novoWidget.styles.fontWeight = 'bold';
+      }
+      
       updateLayer(gridLayer.id, { widgets: [...currentWidgets, novoWidget] });
       setSelectedLayerId(gridLayer.id);
   };
 
   const updateWidget = (updatedWidget: Widget) => {
-    setLayers(layers.map(layer => {
+    setLayers(prevLayers => prevLayers.map(layer => {
       if (layer.type === 'widget-grid' && layer.options.widgets) {
         return {
           ...layer,
