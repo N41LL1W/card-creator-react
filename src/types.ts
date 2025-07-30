@@ -16,21 +16,22 @@ export interface WidgetStyles {
 
 export interface Widget {
   id: number;
-  type: 'texto' | 'imagem'; // Tipos genéricos para permitir repetição
-  label: string; // O nome que o usuário vê (ex: "Nome Principal", "Logo Empresa")
+  type: 'texto' | 'imagem';
+  label: string;
   content: string;
-  gridCell: number; // Posição dentro da camada de grid
+  gridCell: number;
   styles: WidgetStyles;
 }
 
+// Opções detalhadas para cada tipo de camada
 export interface LayerOptions {
   type: 'solid' | 'gradient' | 'image' | 'grid';
   solidColor?: string;
   solidOpacity?: number;
   gradientAngle?: number;
   gradientColors?: GradientColorStop[];
-  imageUrl?: string;
-  imageOpacity?: number;
+  imageUrl?: string; // NOVO
+  imageOpacity?: number; // NOVO
   colSizes?: string[];
   rowSizes?: string[];
   widgets?: Widget[];

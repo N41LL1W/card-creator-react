@@ -1,6 +1,6 @@
 // src/components/BackgroundControls/BackgroundControls.tsx
 import styles from './BackgroundControls.module.css';
-import type { LayerOptions, GradientColorStop } from '../../types'; // Importa os tipos corretos
+import type { LayerOptions, GradientColorStop } from '../../types';
 
 interface BackgroundControlsProps {
   options: LayerOptions;
@@ -10,38 +10,24 @@ interface BackgroundControlsProps {
 export function BackgroundControls({ options, onUpdate }: BackgroundControlsProps) {
   
   const handleTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    onUpdate({ type: e.target.value as 'solid' | 'gradient' });
+    onUpdate({ type: e.target.value as 'solid' | 'gradient' | 'image' });
   };
-
-  const handleSolidColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onUpdate({ solidColor: e.target.value });
-  };
-
-  const handleSolidOpacityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onUpdate({ solidOpacity: parseFloat(e.target.value) });
-  };
-
-  const handleGradientAngleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onUpdate({ gradientAngle: parseInt(e.target.value, 10) });
-  };
-
+  
+  // Funções para gradiente
   const handleGradientColorChange = (index: number, color: string) => {
     const newColors = [...(options.gradientColors || [])];
     newColors[index] = { ...newColors[index], color: color };
     onUpdate({ gradientColors: newColors });
   };
-  
   const handleGradientOpacityChange = (index: number, opacity: string) => {
     const newColors = [...(options.gradientColors || [])];
     newColors[index] = { ...newColors[index], opacity: parseFloat(opacity) };
     onUpdate({ gradientColors: newColors });
   };
-
   const addColor = () => {
     const newColor: GradientColorStop = { color: '#ffffff', opacity: 1.0 };
     onUpdate({ gradientColors: [...(options.gradientColors || []), newColor] });
   };
-
   const removeColor = (index: number) => {
     if (options.gradientColors && options.gradientColors.length > 2) {
       onUpdate({ gradientColors: options.gradientColors.filter((_, i) => i !== index) });
@@ -55,7 +41,7 @@ export function BackgroundControls({ options, onUpdate }: BackgroundControlsProp
         <select id="bg-type" value={options.type} onChange={handleTypeChange}>
           <option value="solid">Cor Sólida</option>
           <option value="gradient">Gradiente</option>
-          {/* <option value="image">Imagem</option> */} {/* Desabilitado por enquanto */}
+          <option value="image">Imagem</option>
         </select>
       </div>
 
@@ -63,8 +49,8 @@ export function BackgroundControls({ options, onUpdate }: BackgroundControlsProp
         <div className={styles.formGroup}>
           <label>Cor e Opacidade</label>
           <div className={styles.colorControlGroup}>
-            <input type="color" value={options.solidColor} onChange={handleSolidColorChange} />
-            <input type="range" min="0" max="1" step="0.01" value={options.solidOpacity} onChange={handleSolidOpacityChange} />
+            <input type="color" value={options.solidColor || '#ffffff'} onChange={(e) => onUpdate({ solidColor: e.target.value })} />
+            <input type="range" min="0" max="1" step="0.01" value={options.solidOpacity || 1} onChange={(e) => onUpdate({ solidOpacity: parseFloat(e.target.value) })} />
           </div>
         </div>
       )}
@@ -72,8 +58,8 @@ export function BackgroundControls({ options, onUpdate }: BackgroundControlsProp
       {options.type === 'gradient' && (
         <>
           <div className={styles.formGroup}>
-            <label>Ângulo ({options.gradientAngle}°)</label>
-            <input type="range" min="0" max="360" value={options.gradientAngle} onChange={handleGradientAngleChange} />
+            <label>Ângulo ({options.gradientAngle || 135}°)</label>
+            <input type="range" min="0" max="360" value={options.gradientAngle || 135} onChange={(e) => onUpdate({ gradientAngle: parseInt(e.target.value, 10)})} />
           </div>
           <div className={styles.formGroup}>
             <label>Cores</label>
@@ -86,6 +72,19 @@ export function BackgroundControls({ options, onUpdate }: BackgroundControlsProp
             ))}
             <button onClick={addColor} className={styles.addButton}>+ Adicionar Cor</button>
           </div>
+        </>
+      )}
+
+      {options.type === 'image' && (
+        <>
+            <div className={styles.formGroup}>
+                <label>URL da Imagem</label>
+                <input type="text" value={options.imageUrl || ''} onChange={(e) => onUpdate({ imageUrl: e.target.value })} placeholder="https://exemplo.com/imagem.png"/>
+            </div>
+            <div className={styles.formGroup}>
+                <label>Opacidade da Camada ({Math.round((options.imageOpacity || 1) * 100)}%)</label>
+                <input type="range" min="0" max="1" step="0.01" value={options.imageOpacity || 1} onChange={(e) => onUpdate({ imageOpacity: parseFloat(e.target.value)})} />
+            </div>
         </>
       )}
     </div>

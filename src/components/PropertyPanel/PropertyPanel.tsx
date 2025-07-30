@@ -13,7 +13,7 @@ interface PropertyPanelProps {
 
 export function PropertyPanel({ layer, updateLayer, updateWidget, onAddWidget }: PropertyPanelProps) {
   if (!layer) {
-    return <div className={styles.panel}><p className={styles.placeholder}>Selecione uma camada na lista para editar suas propriedades.</p></div>;
+    return <div className={styles.panel}><p className={styles.placeholder}>Selecione uma camada na lista para editar.</p></div>;
   }
 
   const handleWidgetStyleChange = (widget: Widget, prop: keyof WidgetStyles, value: any) => {
@@ -58,7 +58,11 @@ export function PropertyPanel({ layer, updateLayer, updateWidget, onAddWidget }:
           
           {(layer.options.widgets || []).map(widget => (
             <div key={widget.id} className={styles.widgetControlBlock}>
-              <header className={styles.header} draggable onDragStart={(e) => e.dataTransfer.setData('widgetId', widget.id.toString())}>
+              <header 
+                className={styles.header} 
+                draggable 
+                onDragStart={(e) => e.dataTransfer.setData('widgetId', widget.id.toString())}
+              >
                 <h4><i className="fas fa-grip-vertical"></i> {widget.label}</h4>
                 <button onClick={() => handleWidgetDelete(widget.id)} className={styles.deleteButton}>×</button>
               </header>

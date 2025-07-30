@@ -40,6 +40,7 @@ export function Card({ layers, onDrop }: CardProps) {
               style.display = 'grid';
               style.gridTemplateColumns = options.colSizes.join(' ');
               style.gridTemplateRows = options.rowSizes.join(' ');
+
               const totalCells = options.colSizes.length * options.rowSizes.length;
               content = Array.from({ length: totalCells }, (_, i) => (
                 <div key={i} className={styles.gridCell} onDragOver={(e) => e.preventDefault()} onDrop={(e) => onDrop(i, e)}>
@@ -48,9 +49,10 @@ export function Card({ layers, onDrop }: CardProps) {
                     .map((widget: Widget) => (
                       <div 
                         key={widget.id}
-                        draggable
+                        draggable // Habilita o arraste do widget já posicionado
                         onDragStart={(e) => e.dataTransfer.setData('widgetId', widget.id.toString())}
                         style={widget.styles}
+                        className={styles.widget}
                       >
                         {widget.type === 'imagem'
                           ? <img src={widget.content || 'https://via.placeholder.com/100'} alt={widget.label} className={styles.widgetImage} />

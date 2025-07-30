@@ -1,4 +1,5 @@
 // src/pages/Editor/Editor.tsx
+
 import { useState } from 'react';
 import styles from './Editor.module.css';
 import { Card } from '../../components/Card/Card';
@@ -19,8 +20,7 @@ export function Editor() {
     {
       id: 2, name: 'Conteúdo', type: 'widget-grid', visible: true,
       options: {
-        type: 'grid',
-        colSizes: ['1fr'], rowSizes: ['1fr'],
+        type: 'grid', colSizes: ['1fr'], rowSizes: ['1fr'],
         widgets: [], // Começa sem widgets
       }
     }
@@ -45,21 +45,20 @@ export function Editor() {
           type: widgetType,
           label: label,
           content: '',
-          gridCell: -1, // Começa desposicionado
+          gridCell: -1,
           styles: { 
-            color: '#333333', 
-            fontSize: '16px', 
-            fontWeight: 'normal', 
-            fontStyle: 'normal', 
-            textDecoration: 'none', 
-            textAlign: 'center', 
-            fontFamily: 'Arial, sans-serif' 
+            color: '#333333', fontSize: '16px', fontWeight: 'normal', fontStyle: 'normal', 
+            textDecoration: 'none', textAlign: 'center', fontFamily: 'Arial, sans-serif' 
           }
       };
 
       if (label.toLowerCase().includes('nome')) {
         novoWidget.styles.fontSize = '28px';
         novoWidget.styles.fontWeight = 'bold';
+      }
+      if (label.toLowerCase().includes('profissão')) {
+        novoWidget.styles.fontSize = '18px';
+        novoWidget.styles.fontStyle = 'italic';
       }
       
       updateLayer(gridLayer.id, { widgets: [...currentWidgets, novoWidget] });
@@ -83,7 +82,7 @@ export function Editor() {
 
   const handleDropOnCard = (cellIndex: number, e: React.DragEvent) => {
     e.preventDefault();
-    const widgetId = e.dataTransfer.getData('widgetId');
+    const widgetId = e.dataTransfer.getData('widgetId'); // ID de um widget existente (do painel ou do card)
     if (!widgetId) return;
 
     const gridLayer = layers.find(l => l.type === 'widget-grid');
